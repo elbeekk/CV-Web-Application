@@ -79,7 +79,7 @@ class _Container2State extends State<Container3> {
                   ),
                 ),
                 const SizedBox(height: 50,),
-                Row(
+                Wrap(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -268,17 +268,15 @@ class _Container2State extends State<Container3> {
         ],
       ),
     );
-  }  // ================= DESKTOP =================
+  }  // ================= TABLET =================
   Widget TabletContainer3() {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 50),
       child: Wrap(
         children: [
           Container(
-              width: w!/2,
               child: Image.asset('assets/elbek1.jpg')),
           Container(
-            width: w!/2,
               child: Padding(
             padding: const EdgeInsets.only(left: 70, right: 50),
             child: Column(
@@ -494,7 +492,7 @@ class _Container2State extends State<Container3> {
     );
   }
 
-  // ================= DESKTOP =================
+  // ================= MOBILE =================
   Widget MobileContainer3() {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20,),
