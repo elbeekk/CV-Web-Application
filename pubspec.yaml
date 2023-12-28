@@ -23,6 +23,9 @@ dependencies:
   dio: ^5.3.3
   fluttertoast: ^8.2.2
   lottie: ^2.6.0
+  flutter_riverpod: ^2.4.9
+  riverpod: ^2.4.9
+  dartz: ^0.10.1
 
 
 dev_dependencies:

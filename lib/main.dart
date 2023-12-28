@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:elbek/pages/home.dart';
+import 'package:elbek/pages/main_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -10,9 +11,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      theme: ThemeData(useMaterial3: false),
+      title: 'Elbek CV',
+      home: const Home(),
     );
   }
 }
