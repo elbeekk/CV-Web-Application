@@ -1,16 +1,10 @@
-# cv_portfolio
+# My CV Web Application
 
-CV for portfolio
+Developed using Flutter framework
 
-## Getting Started
+## Source to check it out
 
-This project is a starting point for a Flutter application.
+[https://el-bek.vercel.app/](url)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Preview
+![image](https://github.com/elbeekk/elbek_cv/assets/121304208/abb6be6a-f1f9-4190-af55-bfcf2b15e098)
