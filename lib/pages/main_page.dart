@@ -36,15 +36,6 @@ class _HomeState extends ConsumerState<Home> {
   final container7Key = GlobalKey();
 
   @override
-  void initState() {
-    var brightness =
-        SchedulerBinding.instance.platformDispatcher.platformBrightness;
-    var locale = SchedulerBinding.instance.platformDispatcher.locale;
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
@@ -70,16 +61,16 @@ class _HomeState extends ConsumerState<Home> {
             Container3(
               key: container3Key,
             ),
-            Container4(
+            EducationPage(
               key: container4Key,
             ),
-            Container5(
+            AwardsPage(
               key: container5Key,
             ),
-            Container6(
+            ProjectsPage(
               key: container6Key,
             ),
-            Container6_1(
+            ChatPage(
               key: container7Key,
             ),
             const FooterPage(),
@@ -212,7 +203,9 @@ class _HomeState extends ConsumerState<Home> {
                       duration: const Duration(seconds: 2));
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: darkState?AppColors.mainAppColorDark:AppColors.mainAppColorLight,
+                    backgroundColor: darkState
+                        ? AppColors.mainAppColorDark
+                        : AppColors.mainAppColorLight,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0))),
                 child: Text("LET'S TALK", style: GoogleFonts.akatab()),
@@ -283,21 +276,40 @@ class _HomeState extends ConsumerState<Home> {
   }
 
   Widget navLogo(bool darkState) {
-    return InkWell(
-      onTap: () {
-        launch(
-            "https://firebasestorage.googleapis.com/v0/b/telegram-bot-54d17.appspot.com/o/Mirzamakhmudov%20Elbek.pdf?alt=media&token=878f15fb-782c-4b7b-8e96-1136e7840a55");
-      },
-      child: Container(
-        width: 130,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        child: GradientText(
-          'Download CV',
-          colors: darkState
-              ? [ AppColors.mainAppColorDark, AppColors.mainAppColorDark]
-              : [Colors.red.shade800, Colors.red],
+    return Row(
+      children: [
+        InkWell(
+          
+          borderRadius: BorderRadius.circular(100),
+            onTap: () {
+              ref.read(AppProvider.isDarkProvider.notifier).state = !darkState;
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(5),
+              child: Icon(
+                darkState ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+                color: darkState
+                    ? AppColors.chatPageMainColor
+                    : AppColors.mainAppColorLight,
+              ),
+            )),
+        InkWell(
+          onTap: () {
+            launch(
+                "https://firebasestorage.googleapis.com/v0/b/telegram-bot-54d17.appspot.com/o/Mirzamakhmudov%20Elbek.pdf?alt=media&token=878f15fb-782c-4b7b-8e96-1136e7840a55");
+          },
+          child: Container(
+            width: 130,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: GradientText(
+              'Download CV',
+              colors: darkState
+                  ? [AppColors.chatPageMainColor, AppColors.mainAppColorDark]
+                  : [Colors.red.shade800, Colors.red],
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_devicon/flutter_devicon.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:lottie/lottie.dart';
 
 class UserData {
   UserData._();
@@ -25,19 +26,19 @@ class UserData {
 
   static List educationHistory = [
     [
+      'Tashkent State University of Economics',
+      'Tashkent State University of Economics is one of the largest higher education institutions in the field of economics in Uzbekistan and Central Asia.',
+      'Sep 2023',
+      'Present',
+      'https://tsue.uz/en'
+    ], [
       'Presidential School in Jizzakh',
       'The Presidential School is a specialized public educational institution whose activities are aimed at identifying and educating gifted children to train highly qualified specialists.',
       'Sep 2021',
       'Jun 2023',
       'https://piima.uz/en/page/presidential-schools'
     ],
-    [
-      'Tashkent State University of Economics',
-      'Tashkent State University of Economics is one of the largest higher education institutions in the field of economics in Uzbekistan and Central Asia.',
-      'Sep 2023',
-      'Present',
-      'https://tsue.uz/en'
-    ]
+
   ];
 
   static List workHistory = [
@@ -47,6 +48,22 @@ class UserData {
       'Jun 2023',
       'Present',
       'https://githubit.com'
+    ],
+  ];
+
+
+  static List projects = [
+    [
+      Lottie.asset('assets/telegramBot.json', fit: BoxFit.fill),
+      "Telegram Bot",
+      "This bot is written using the teledart package of the flutter framework of the dart language and this bot converts any type of video into audio. The bot user interface is in Uzbek"
+          ", Russian, and English, and there will be no problems using the bot.",
+      "https://t.me/video_to_audio0_bot"
+    ],[
+      Lottie.asset('assets/game.json', fit: BoxFit.fill),
+      "Mini Game for PC & Mobile",
+      "This game developed using flutter framework and flame engine, it took me almosts 2 days to learn this engine and build this game.",
+      "https://ninja-frog.vercel.app"
     ],
   ];
 }

@@ -1,44 +1,52 @@
 import 'package:another_stepper/another_stepper.dart';
+import 'package:elbek/riverpod/all_providers.dart';
+import 'package:elbek/utils/user_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:elbek/utils/colors.dart';
 import 'package:elbek/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Container4 extends StatefulWidget {
-  Container4({super.key});
+class EducationPage extends ConsumerStatefulWidget {
+  EducationPage({super.key});
 
   @override
-  State<Container4> createState() => _Container4State();
+  ConsumerState<EducationPage> createState() => _EducationPageState();
 }
 
-class _Container4State extends State<Container4> {
+class _EducationPageState extends ConsumerState<EducationPage> {
   Color stepperColor1 = AppColors.primary;
   Color stepperColor2 = AppColors.primary;
   Color stepperColor3 = AppColors.primary;
 
   @override
   Widget build(BuildContext context) {
+    final darkState = ref.watch(AppProvider.isDarkProvider);
     return ScreenTypeLayout(
       mobile: MobileContainer4(),
-      desktop: DesktopContainer4(),
-      tablet: DesktopContainer4(),
+      desktop: _desktopPage(darkState),
     );
   }
 
-  Widget DesktopContainer4() {
+  Widget _desktopPage(bool darkState) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 50),
+      padding: const EdgeInsets.symmetric(vertical: 50),
       decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Colors.grey.shade50,
-              AppColors.backColor,
-            ],
-            begin: Alignment.topRight,
-          )
-      ),
+        end: Alignment.bottomRight,
+        colors: darkState
+            ? [
+                AppColors.mainBackgroundColorDark,
+                AppColors.flutterPageGradientColorDark1
+              ]
+            : [
+                Colors.grey.shade50,
+                AppColors.flutterPageGradientColorLight1,
+              ],
+        begin: Alignment.topRight,
+      )),
       child: Wrap(
         alignment: WrapAlignment.spaceEvenly,
         crossAxisAlignment: WrapCrossAlignment.start,
@@ -52,163 +60,16 @@ class _Container4State extends State<Container4> {
               Text(
                 'Education',
                 style: GoogleFonts.bodoniModa(
-                    fontSize: 50, fontWeight: FontWeight.bold),
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: darkState
+                        ? AppColors.mainTitleColorDark
+                        : AppColors.mainTitleColorLight),
               ),
               const SizedBox(
                 height: 50,
               ),
-              Container(
-                constraints: const BoxConstraints(maxWidth: 500,maxHeight: 170),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.expand_circle_down_outlined,
-                          color: AppColors.onprimary,
-                        ),
-                        Expanded(
-                            child: VerticalDivider(
-                              color: Colors.grey.shade300,
-                              width: 1.5,
-                              endIndent: 0,
-                              indent: 0,
-                              thickness: 1,
-                            )),
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      constraints: const BoxConstraints(maxWidth: 450),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                stepperColor1=AppColors.onprimary;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                stepperColor1=AppColors.primary;
-                              });
-                            },
-                            child: InkWell(
-                              onTap: (){
-                                launch('https://piima.uz/en/page/presidential-schools');
-                              },
-                              child: Text(
-                                'Presidential School in Jizzakh',
-                                style: GoogleFonts.aBeeZee(
-                                  color: stepperColor1,
-                                  fontSize: 22,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5,),
-                          Text('Sep 2021 - Jun 2023',
-                              style: GoogleFonts.aBeeZee(
-                                color: Colors.grey.shade600,
-                                fontSize: 15,
-                              )),
-                          const SizedBox(height: 7,),
-                          Text(
-                            'The Presidential School is a specialized public educational institution whose activities are aimed at identifying and educating gifted children to train highly qualified specialists.',
-                            style: GoogleFonts.aBeeZee(
-                              color: Colors.grey,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                constraints: const BoxConstraints(maxWidth: 500,maxHeight: 170,),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.expand_circle_down_outlined,
-                          color: AppColors.onprimary,
-                        ),
-                        Expanded(
-                            child: VerticalDivider(
-                              color: Colors.grey.shade300,
-                              width: 1.5,
-                              endIndent: 0,
-                              indent: 0,
-                              thickness: 1,
-                            )),
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      constraints: const BoxConstraints(maxWidth: 450),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                stepperColor2=AppColors.onprimary;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                stepperColor2=AppColors.primary;
-                              });
-                            },
-                            child: InkWell(
-                              onTap: (){
-                                launch('https://tsue.uz/en');
-                              },
-                              child: Text(
-                                'Tashkent State University of Economics',
-                                style: GoogleFonts.aBeeZee(
-                                  color: stepperColor2,
-                                  fontSize: 22,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5,),
-                          Text('Sep 2023 - Present',
-                              style: GoogleFonts.aBeeZee(
-                                color: Colors.grey.shade600,
-                                fontSize: 15,
-                              )),
-                          const SizedBox(height: 7,),
-                          Text(
-                            'Tashkent State University of Economics is one of the largest higher education institutions in the field of economics in Uzbekistan and Central Asia.',
-                            style: GoogleFonts.aBeeZee(
-                              color: Colors.grey,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ...customTree(darkState, UserData.educationHistory),
             ],
           ),
           Column(
@@ -217,88 +78,16 @@ class _Container4State extends State<Container4> {
               Text(
                 'Experience',
                 style: GoogleFonts.bodoniModa(
-                    fontSize: 50, fontWeight: FontWeight.bold),
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: darkState
+                        ? AppColors.mainTitleColorDark
+                        : AppColors.mainTitleColorLight),
               ),
               const SizedBox(
                 height: 50,
               ),
-              Container(
-                constraints:
-                const BoxConstraints(maxWidth: 500,maxHeight:170),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.expand_circle_down_outlined,
-                          color: AppColors.onprimary,
-                        ),
-                        Expanded(
-                            child: VerticalDivider(
-                              color: Colors.grey.shade300,
-                              width: 1.5,
-                              endIndent: 0,
-                              indent: 0,
-                              thickness: 1,
-                            )),
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      constraints: const BoxConstraints(maxWidth: 450),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                stepperColor3=AppColors.onprimary;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                stepperColor3=AppColors.primary;
-                              });
-                            },
-                            child: InkWell(
-                              onTap: (){
-                                launch('https://githubit.com/');
-                              },
-                              child: Text(
-                                'Mobile App Developer in Githubit',
-                                style: GoogleFonts.aBeeZee(
-                                  color: stepperColor3,
-                                  fontSize: 22,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5,),
-                          Text("Jun 2023 - Present",
-                              style: GoogleFonts.aBeeZee(
-                                color: Colors.grey.shade600,
-                                fontSize: 15,
-                              )),
-                          const SizedBox(height: 7,),
-                          Text(
-                            'A mobile app developer uses programming languages and development skills to create, test, and develop applications on mobile devices.',
-                            style: GoogleFonts.aBeeZee(
-                              color: Colors.grey,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              ...customTree(darkState, UserData.workHistory),
             ],
           ),
         ],
@@ -306,90 +95,172 @@ class _Container4State extends State<Container4> {
     );
   }
 
-  Container customStepper(String url, String title, String duration, String subtitle,Color color) {
-    return Container(
-              constraints:
-                   BoxConstraints(maxWidth: w!,maxHeight: 200),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+  List<Widget> customTree(bool darkState, List list) {
+    return List.generate(list.length, (index) {
+      final current = list[index];
+      return Container(
+        constraints: const BoxConstraints(maxWidth: 500, maxHeight: 170),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.expand_circle_down_outlined,
+                  color: darkState
+                      ? AppColors.mainAppColorDark
+                      : AppColors.mainAppColorLight,
+                ),
+                Expanded(
+                    child: VerticalDivider(
+                  color: Colors.grey.shade300,
+                  width: 1.5,
+                  endIndent: 0,
+                  indent: 0,
+                  thickness: 1,
+                )),
+              ],
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Container(
+              constraints: const BoxConstraints(maxWidth: 450),
+              child: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.expand_circle_down_outlined,
-                        color: AppColors.onprimary,
-                      ),
-                      Expanded(
-                          child: VerticalDivider(
-                        color: Colors.grey.shade300,
-                        width: 1.5,
-                        endIndent: 0,
-                        indent: 0,
-                        thickness: 1,
-                      )),
-                    ],
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    constraints: BoxConstraints(maxWidth: w!*0.8),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                color=AppColors.onprimary;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                color=AppColors.primary;
-                              });
-                            },
-                            child: InkWell(
-                              onTap: (){
-                                launch(url);
-                              },
-                              child: Text(
-                                title,
-                                style: GoogleFonts.aBeeZee(
-                                  color: color,
-                                  fontSize: 22,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5,),
-                          Text(duration,
-                              style: GoogleFonts.aBeeZee(
-                                color: Colors.grey.shade600,
-                                fontSize: 15,
-                              )),
-                          const SizedBox(height: 7,),
-                          Text(
-                            subtitle,
-                            style: GoogleFonts.aBeeZee(
-                              color: Colors.grey,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
+                  InkWell(
+                    onTap: () {
+                      launch(current[4]);
+                    },
+                    child: Text(
+                      current[0],
+                      style: GoogleFonts.aBeeZee(
+                        color: darkState
+                            ? AppColors.mainTitleColorDark
+                            : AppColors.mainTitleColorLight,
+                        fontSize: 22,
                       ),
                     ),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text('${current[2]} - ${current[3]}',
+                      style: GoogleFonts.aBeeZee(
+                        color: darkState
+                            ? AppColors.flutterPageSubtitleColorDark
+                            : AppColors.flutterPageSubtitleColorLight,
+                        fontSize: 15,
+                      )),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  Text(
+                    current[1],
+                    style: GoogleFonts.aBeeZee(
+                      color: Colors.grey,
+                      fontSize: 15,
+                    ),
+                  ),
                 ],
               ),
-            );
+            ),
+          ],
+        ),
+      );
+    });
   }
 
-
+  Container customStepper(
+      String url, String title, String duration, String subtitle, Color color) {
+    return Container(
+      constraints: BoxConstraints(maxWidth: w!, maxHeight: 200),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.expand_circle_down_outlined,
+                color: AppColors.onprimary,
+              ),
+              Expanded(
+                  child: VerticalDivider(
+                color: Colors.grey.shade300,
+                width: 1.5,
+                endIndent: 0,
+                indent: 0,
+                thickness: 1,
+              )),
+            ],
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Container(
+            constraints: BoxConstraints(maxWidth: w! * 0.8),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MouseRegion(
+                    onEnter: (event) {
+                      setState(() {
+                        color = AppColors.onprimary;
+                      });
+                    },
+                    onExit: (event) {
+                      setState(() {
+                        color = AppColors.primary;
+                      });
+                    },
+                    child: InkWell(
+                      onTap: () {
+                        launch(url);
+                      },
+                      child: Text(
+                        title,
+                        style: GoogleFonts.aBeeZee(
+                          color: color,
+                          fontSize: 22,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(duration,
+                      style: GoogleFonts.aBeeZee(
+                        color: Colors.grey.shade600,
+                        fontSize: 15,
+                      )),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  Text(
+                    subtitle,
+                    style: GoogleFonts.aBeeZee(
+                      color: Colors.grey,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 
   Widget MobileContainer4() {
     return Container(
@@ -397,7 +268,7 @@ class _Container4State extends State<Container4> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(),
+          const Row(),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -408,22 +279,34 @@ class _Container4State extends State<Container4> {
               ),
               Column(
                 children: [
-                  customStepper('https://piima.uz/en/page/presidential-schools',
-                      'Presidential School in Jizzakh', '2021 - 2023',
-                      'The Presidential School is a specialized public educational institution whose activities are aimed at identifying and educating gifted children to train highly qualified specialists.',stepperColor1),
-                  customStepper('https://tsue.uz/en', 'Tashkent State University of Economics', '2023 - Present', 'Tashkent State University of Economics is one of the largest higher education institutions in the field of economics in Uzbekistan and Central Asia.',stepperColor2)
-                  ],
+                  customStepper(
+                      'https://piima.uz/en/page/presidential-schools',
+                      'Presidential School in Jizzakh',
+                      '2021 - 2023',
+                      'The Presidential School is a specialized public educational institution whose activities are aimed at identifying and educating gifted children to train highly qualified specialists.',
+                      stepperColor1),
+                  customStepper(
+                      'https://tsue.uz/en',
+                      'Tashkent State University of Economics',
+                      '2023 - Present',
+                      'Tashkent State University of Economics is one of the largest higher education institutions in the field of economics in Uzbekistan and Central Asia.',
+                      stepperColor2)
+                ],
               )
             ],
           ),
-          SizedBox(height: 50,),
+          const SizedBox(
+            height: 50,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 'Experience',
                 style: GoogleFonts.bodoniModa(
-                    fontSize: 50, fontWeight: FontWeight.bold),
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
                 height: 50,
@@ -431,8 +314,14 @@ class _Container4State extends State<Container4> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  customStepper('https://githubit.com/', 'Mobile App Developer in Githubit', "Jun 2023 - Present", 'A mobile app developer uses programming languages and development skills to create, test, and develop applications on mobile devices.',stepperColor3)
-                ],),
+                  customStepper(
+                      'https://githubit.com/',
+                      'Mobile App Developer in Githubit',
+                      "Jun 2023 - Present",
+                      'A mobile app developer uses programming languages and development skills to create, test, and develop applications on mobile devices.',
+                      stepperColor3)
+                ],
+              ),
             ],
           ),
         ],

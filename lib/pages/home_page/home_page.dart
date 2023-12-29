@@ -120,7 +120,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     TextSpan(
                       text: "Elbek Mirzamakhmudov",
                       style:
-                          GoogleFonts.abhayaLibre(color:darkState?AppColors.mainAppColorDark:AppColors.mainAppColorLight),
+                          GoogleFonts.abhayaLibre(color:darkState?AppColors.chatPageMainColor:AppColors.mainAppColorLight),
                     ),
                     const TextSpan(text: '\na Flutter developer.')
                   ]),

@@ -63,7 +63,7 @@ class _Container2State extends ConsumerState<Container3> {
               color: darkState
                   ? AppColors.mainBackgroundColorDark
                   : AppColors.mainBackgroundColorLight,
-              colorBlendMode: darkState?BlendMode.plus:BlendMode.dstOver,
+              colorBlendMode: darkState ? BlendMode.plus : BlendMode.dstOver,
             ),
           ),
           SizedBox(
@@ -106,18 +106,18 @@ class _Container2State extends ConsumerState<Container3> {
                               "mailto:elbekmirzamakhmudov@gmail.com?${Uri.encodeComponent('Hello')}&body=${Uri.encodeComponent('Hello Brother')}");
                         }, "elbekmirzamakhmudov@gmail.com",
                             Icons.email_outlined),
-                        bioButtons(darkState, (){},"8 August, 2005",
+                        bioButtons(darkState, () {}, "8 August, 2005",
                             Icons.calendar_month_outlined),
-                        bioButtons(darkState,() async {
+                        bioButtons(darkState, () async {
                           final Uri telUrl = Uri(
                             scheme: 'tel',
                             path: '+998936669953',
                           );
                           await launch('tel:+998936669953');
-                        },"+998 93 666 99 53",
-                            Icons.call_outlined),
-                        bioButtons(darkState, (){launchMaps();},"Tashkent, Uzbekistan",
-                            Icons.location_on_outlined),
+                        }, "+998 93 666 99 53", Icons.call_outlined),
+                        bioButtons(darkState, () {
+                          launchMaps();
+                        }, "Tashkent, Uzbekistan", Icons.location_on_outlined),
                       ],
                     )
                   ],

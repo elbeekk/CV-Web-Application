@@ -11,9 +11,10 @@ class AppColors {
   static Color mainBackgroundColorDark = Colors.black.withGreen(22);
   static Color mainTitleColorDark = Colors.white;
   static Color mainTitleColorLight = Colors.black;
-  static Color mainAppColorDark = Color(0xff014809);
-  static Color mainAppColorLight = Color(0xffab5232);
+  static Color mainAppColorDark = const Color(0xff014809);
+  static Color mainAppColorLight = const Color(0xffab5232);
 
+  static Color chatPageMainColor =  const Color(0xff1f932c);
 
   /// flutter page
   static Color flutterPageGradientColorLight1 = const Color(0xfffce9e1);
