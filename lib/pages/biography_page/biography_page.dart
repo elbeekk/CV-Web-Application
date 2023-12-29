@@ -8,14 +8,14 @@ import 'package:elbek/utils/colors.dart';
 import 'package:elbek/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Container3 extends ConsumerStatefulWidget {
-  const Container3({super.key});
+class BiographyPage extends ConsumerStatefulWidget {
+  const BiographyPage({super.key});
 
   @override
-  ConsumerState<Container3> createState() => _Container2State();
+  ConsumerState<BiographyPage> createState() => _Container2State();
 }
 
-class _Container2State extends ConsumerState<Container3> {
+class _Container2State extends ConsumerState<BiographyPage> {
   Color color1 = AppColors.primary;
   Color color2 = AppColors.primary;
   Color color3 = AppColors.primary;
@@ -43,14 +43,14 @@ class _Container2State extends ConsumerState<Container3> {
   Widget build(BuildContext context) {
     final darkState = ref.watch(AppProvider.isDarkProvider);
     return ScreenTypeLayout(
-      mobile: MobileContainer3(),
-      desktop: _desktopBiography(darkState),
-      tablet: TabletContainer3(),
+      mobile: _mobilePage(darkState),
+      desktop: _desktopPage(darkState),
+      tablet: _mobilePage(darkState),
     );
   }
 
-  // ================= DESKTOP =================
-  Widget _desktopBiography(bool darkState) {
+  /// ================= DESKTOP =================
+  Widget _desktopPage(bool darkState) {
     return Container(
       width: w,
       margin: const EdgeInsets.symmetric(vertical: 50),
@@ -157,226 +157,8 @@ class _Container2State extends ConsumerState<Container3> {
     );
   } // ================= TABLET =================
 
-  Widget TabletContainer3() {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 50),
-      child: Wrap(
-        children: [
-          Container(child: Image.asset('assets/elbek1.jpg')),
-          Container(
-              child: Padding(
-            padding: const EdgeInsets.only(left: 70, right: 50),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Biography',
-                  style: GoogleFonts.bodoniModa(
-                      fontSize: 50, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                Text(
-                  """Talented UI/UX designer with 8+ years of experience, seeking to elevate work at ModelTheme, Inc. As Lead UI/UX Head completed project before dead line. ittis augue, id sollicitudin tristique ut.\n\n\nGain visiblity & authorities with a unique mix of content strategy & designing I seek to understand your customer & the problems they need to solve. Then persusion science and marketng strategy to create kind content that rapidly drives traffic and builds authority. Generating lead magnets, content creation editing and optimization, multi funnel marketing.""",
-                  style: GoogleFonts.aBeeZee(
-                    color: Colors.grey.shade600,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                Wrap(
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                color1 = AppColors.onprimary;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                color1 = AppColors.primary;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextButton.icon(
-                                onPressed: null,
-                                icon: Icon(
-                                  Icons.person,
-                                  color: AppColors.onprimary,
-                                ),
-                                label: SelectableText(
-                                  'Elbek Mirzamakhmudov',
-                                  style: TextStyle(fontSize: 15, color: color1),
-                                ),
-                              ),
-                            )),
-                        MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                color2 = AppColors.onprimary;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                color2 = AppColors.primary;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextButton.icon(
-                                onPressed: () async {
-                                  final smth = await launch(
-                                      "mailto:elbekmirzamakhmudov@gmail.com?${Uri.encodeComponent('Hello')}&body=${Uri.encodeComponent('Hello Brother')}");
-                                },
-                                icon: Icon(
-                                  Icons.email_outlined,
-                                  color: AppColors.onprimary,
-                                ),
-                                label: Text(
-                                  'elbekmirzamakhmudov@gmail.com',
-                                  style: TextStyle(fontSize: 15, color: color2),
-                                ),
-                              ),
-                            )),
-                        MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                color3 = AppColors.onprimary;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                color3 = AppColors.primary;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextButton.icon(
-                                onPressed: null,
-                                icon: Icon(
-                                  Icons.calendar_today,
-                                  color: AppColors.onprimary,
-                                ),
-                                label: SelectableText(
-                                  '8 August, 2005',
-                                  style: TextStyle(fontSize: 15, color: color3),
-                                ),
-                              ),
-                            )),
-                      ],
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                color4 = AppColors.onprimary;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                color4 = AppColors.primary;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextButton.icon(
-                                onPressed: () async {
-                                  final Uri telUrl = Uri(
-                                    scheme: 'tel',
-                                    path: '+998936669953',
-                                  );
-                                  await launch('tel:+998936669953');
-                                },
-                                icon: Icon(
-                                  Icons.call,
-                                  color: AppColors.onprimary,
-                                ),
-                                label: Text(
-                                  '(+998) 93 666 99 53',
-                                  style: TextStyle(fontSize: 15, color: color4),
-                                ),
-                              ),
-                            )),
-                        MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                color5 = AppColors.onprimary;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                color5 = AppColors.primary;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextButton.icon(
-                                onPressed: () {
-                                  launchMaps();
-                                },
-                                icon: Icon(
-                                  Icons.location_on_outlined,
-                                  color: AppColors.onprimary,
-                                ),
-                                label: Text(
-                                  'Tashkent, Uzbekistan',
-                                  style: TextStyle(fontSize: 15, color: color5),
-                                ),
-                              ),
-                            )),
-                        MouseRegion(
-                            onEnter: (event) {
-                              setState(() {
-                                color6 = AppColors.onprimary;
-                              });
-                            },
-                            onExit: (event) {
-                              setState(() {
-                                color6 = AppColors.primary;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextButton.icon(
-                                onPressed: () {
-                                  launch("https://www.instagram.com/el.bekk/");
-                                },
-                                icon: Icon(
-                                  MaterialCommunityIcons.instagram,
-                                  color: AppColors.onprimary,
-                                ),
-                                label: Text(
-                                  'el.bekk',
-                                  style: TextStyle(fontSize: 15, color: color6),
-                                ),
-                              ),
-                            )),
-                      ],
-                    )
-                  ],
-                )
-              ],
-            ),
-          )),
-        ],
-      ),
-    );
-  }
-
-  // ================= MOBILE =================
-  Widget MobileContainer3() {
+  /// ================= MOBILE =================
+  Widget _mobilePage(bool darkState) {
     return Container(
       margin: const EdgeInsets.symmetric(
         vertical: 20,
@@ -395,7 +177,12 @@ class _Container2State extends ConsumerState<Container3> {
                 Text(
                   'Biography',
                   style: GoogleFonts.bodoniModa(
-                      fontSize: 50, fontWeight: FontWeight.bold),
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                      color: darkState
+                          ? AppColors.mainTitleColorDark
+                          : AppColors.mainTitleColorLight
+                  ),
                 ),
                 const SizedBox(
                   height: 30,
@@ -403,181 +190,196 @@ class _Container2State extends ConsumerState<Container3> {
                 Text(
                   """Talented UI/UX designer with 8+ years of experience, seeking to elevate work at ModelTheme, Inc. As Lead UI/UX Head completed project before dead line. ittis augue, id sollicitudin tristique ut.\n\n\nGain visiblity & authorities with a unique mix of content strategy & designing I seek to understand your customer & the problems they need to solve. Then persusion science and marketng strategy to create kind content that rapidly drives traffic and builds authority. Generating lead magnets, content creation editing and optimization, multi funnel marketing.""",
                   style: GoogleFonts.aBeeZee(
-                    color: Colors.grey.shade600,
+                    color: darkState
+                        ? AppColors.flutterPageSubtitleColorDark
+                        : AppColors.flutterPageSubtitleColorLight,
                     fontSize: 16,
                   ),
                 ),
                 const SizedBox(
                   height: 50,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Wrap(
+                  spacing: 5,
+                  runSpacing: 5,
                   children: [
-                    MouseRegion(
-                        onEnter: (event) {
-                          setState(() {
-                            color1 = AppColors.onprimary;
-                          });
-                        },
-                        onExit: (event) {
-                          setState(() {
-                            color1 = AppColors.primary;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextButton.icon(
-                            onPressed: null,
-                            icon: Icon(
-                              Icons.person,
-                              color: AppColors.onprimary,
-                            ),
-                            label: SelectableText(
-                              'Elbek Mirzamakhmudov',
-                              style: TextStyle(fontSize: 15, color: color1),
-                            ),
-                          ),
-                        )),
-                    MouseRegion(
-                        onEnter: (event) {
-                          setState(() {
-                            color2 = AppColors.onprimary;
-                          });
-                        },
-                        onExit: (event) {
-                          setState(() {
-                            color2 = AppColors.primary;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextButton.icon(
-                            onPressed: () async {
-                              final smth = await launch(
-                                  "mailto:elbekmirzamakhmudov@gmail.com?${Uri.encodeComponent('Hello')}&body=${Uri.encodeComponent('Hello Brother')}");
-                            },
-                            icon: Icon(
-                              Icons.email_outlined,
-                              color: AppColors.onprimary,
-                            ),
-                            label: Text(
-                              'elbekmirzamakhmudov@gmail.com',
-                              style: TextStyle(fontSize: 15, color: color2),
-                            ),
-                          ),
-                        )),
-                    MouseRegion(
-                        onEnter: (event) {
-                          setState(() {
-                            color3 = AppColors.onprimary;
-                          });
-                        },
-                        onExit: (event) {
-                          setState(() {
-                            color3 = AppColors.primary;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextButton.icon(
-                            onPressed: null,
-                            icon: Icon(
-                              Icons.calendar_today,
-                              color: AppColors.onprimary,
-                            ),
-                            label: SelectableText(
-                              '8 August, 2005',
-                              style: TextStyle(fontSize: 15, color: color3),
-                            ),
-                          ),
-                        )),
-                    MouseRegion(
-                        onEnter: (event) {
-                          setState(() {
-                            color4 = AppColors.onprimary;
-                          });
-                        },
-                        onExit: (event) {
-                          setState(() {
-                            color4 = AppColors.primary;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextButton.icon(
-                            onPressed: () async {
-                              final Uri telUrl = Uri(
-                                scheme: 'tel',
-                                path: '+998936669953',
-                              );
-                              await launch('tel:+998936669953');
-                            },
-                            icon: Icon(
-                              Icons.call,
-                              color: AppColors.onprimary,
-                            ),
-                            label: Text(
-                              '(+998) 93 666 99 53',
-                              style: TextStyle(fontSize: 15, color: color4),
-                            ),
-                          ),
-                        )),
-                    MouseRegion(
-                        onEnter: (event) {
-                          setState(() {
-                            color5 = AppColors.onprimary;
-                          });
-                        },
-                        onExit: (event) {
-                          setState(() {
-                            color5 = AppColors.primary;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextButton.icon(
-                            onPressed: () {
-                              launchMaps();
-                            },
-                            icon: Icon(
-                              Icons.location_on_outlined,
-                              color: AppColors.onprimary,
-                            ),
-                            label: Text(
-                              'Tashkent, Uzbekistan',
-                              style: TextStyle(fontSize: 15, color: color5),
-                            ),
-                          ),
-                        )),
-                    MouseRegion(
-                        onEnter: (event) {
-                          setState(() {
-                            color6 = AppColors.onprimary;
-                          });
-                        },
-                        onExit: (event) {
-                          setState(() {
-                            color6 = AppColors.primary;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextButton.icon(
-                            onPressed: () {
-                              launch("https://www.instagram.com/el.bekk/");
-                            },
-                            icon: Icon(
-                              MaterialCommunityIcons.instagram,
-                              color: AppColors.onprimary,
-                            ),
-                            label: Text(
-                              'el.bekk',
-                              style: TextStyle(fontSize: 15, color: color6),
-                            ),
-                          ),
-                        ))
+                    bioButtons(darkState, () async {
+                      final smth = await launch(
+                          "mailto:elbekmirzamakhmudov@gmail.com?${Uri.encodeComponent('Hello')}&body=${Uri.encodeComponent('Hello Brother')}");
+                    }, "elbekmirzamakhmudov@gmail.com",
+                        Icons.email_outlined),
+                    bioButtons(darkState, () {}, "8 August, 2005",
+                        Icons.calendar_month_outlined),
+                    bioButtons(darkState, () async {
+                      final Uri telUrl = Uri(
+                        scheme: 'tel',
+                        path: '+998936669953',
+                      );
+                      await launch('tel:+998936669953');
+                    }, "+998 93 666 99 53", Icons.call_outlined),
+                    bioButtons(darkState, () {
+                      launchMaps();
+                    }, "Tashkent, Uzbekistan", Icons.location_on_outlined),
                   ],
-                )
+                ),
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     MouseRegion(
+                //         child: Padding(
+                //           padding: const EdgeInsets.all(8.0),
+                //           child: TextButton.icon(
+                //             onPressed: null,
+                //             icon: Icon(
+                //               Icons.person,
+                //               color: AppColors.onprimary,
+                //             ),
+                //             label: SelectableText(
+                //               'Elbek Mirzamakhmudov',
+                //               style: TextStyle(fontSize: 15, color: color1),
+                //             ),
+                //           ),
+                //         )),
+                //     MouseRegion(
+                //         onEnter: (event) {
+                //           setState(() {
+                //             color2 = AppColors.onprimary;
+                //           });
+                //         },
+                //         onExit: (event) {
+                //           setState(() {
+                //             color2 = AppColors.primary;
+                //           });
+                //         },
+                //         child: Padding(
+                //           padding: const EdgeInsets.all(8.0),
+                //           child: TextButton.icon(
+                //             onPressed: () async {
+                //               final smth = await launch(
+                //                   "mailto:elbekmirzamakhmudov@gmail.com?${Uri.encodeComponent('Hello')}&body=${Uri.encodeComponent('Hello Brother')}");
+                //             },
+                //             icon: Icon(
+                //               Icons.email_outlined,
+                //               color: AppColors.onprimary,
+                //             ),
+                //             label: Text(
+                //               'elbekmirzamakhmudov@gmail.com',
+                //               style: TextStyle(fontSize: 15, color: color2),
+                //             ),
+                //           ),
+                //         )),
+                //     MouseRegion(
+                //         onEnter: (event) {
+                //           setState(() {
+                //             color3 = AppColors.onprimary;
+                //           });
+                //         },
+                //         onExit: (event) {
+                //           setState(() {
+                //             color3 = AppColors.primary;
+                //           });
+                //         },
+                //         child: Padding(
+                //           padding: const EdgeInsets.all(8.0),
+                //           child: TextButton.icon(
+                //             onPressed: null,
+                //             icon: Icon(
+                //               Icons.calendar_today,
+                //               color: AppColors.onprimary,
+                //             ),
+                //             label: SelectableText(
+                //               '8 August, 2005',
+                //               style: TextStyle(fontSize: 15, color: color3),
+                //             ),
+                //           ),
+                //         )),
+                //     MouseRegion(
+                //         onEnter: (event) {
+                //           setState(() {
+                //             color4 = AppColors.onprimary;
+                //           });
+                //         },
+                //         onExit: (event) {
+                //           setState(() {
+                //             color4 = AppColors.primary;
+                //           });
+                //         },
+                //         child: Padding(
+                //           padding: const EdgeInsets.all(8.0),
+                //           child: TextButton.icon(
+                //             onPressed: () async {
+                //               final Uri telUrl = Uri(
+                //                 scheme: 'tel',
+                //                 path: '+998936669953',
+                //               );
+                //               await launch('tel:+998936669953');
+                //             },
+                //             icon: Icon(
+                //               Icons.call,
+                //               color: AppColors.onprimary,
+                //             ),
+                //             label: Text(
+                //               '(+998) 93 666 99 53',
+                //               style: TextStyle(fontSize: 15, color: color4),
+                //             ),
+                //           ),
+                //         )),
+                //     MouseRegion(
+                //         onEnter: (event) {
+                //           setState(() {
+                //             color5 = AppColors.onprimary;
+                //           });
+                //         },
+                //         onExit: (event) {
+                //           setState(() {
+                //             color5 = AppColors.primary;
+                //           });
+                //         },
+                //         child: Padding(
+                //           padding: const EdgeInsets.all(8.0),
+                //           child: TextButton.icon(
+                //             onPressed: () {
+                //               launchMaps();
+                //             },
+                //             icon: Icon(
+                //               Icons.location_on_outlined,
+                //               color: AppColors.onprimary,
+                //             ),
+                //             label: Text(
+                //               'Tashkent, Uzbekistan',
+                //               style: TextStyle(fontSize: 15, color: color5),
+                //             ),
+                //           ),
+                //         )),
+                //     MouseRegion(
+                //         onEnter: (event) {
+                //           setState(() {
+                //             color6 = AppColors.onprimary;
+                //           });
+                //         },
+                //         onExit: (event) {
+                //           setState(() {
+                //             color6 = AppColors.primary;
+                //           });
+                //         },
+                //         child: Padding(
+                //           padding: const EdgeInsets.all(8.0),
+                //           child: TextButton.icon(
+                //             onPressed: () {
+                //               launch("https://www.instagram.com/el.bekk/");
+                //             },
+                //             icon: Icon(
+                //               MaterialCommunityIcons.instagram,
+                //               color: AppColors.onprimary,
+                //             ),
+                //             label: Text(
+                //               'el.bekk',
+                //               style: TextStyle(fontSize: 15, color: color6),
+                //             ),
+                //           ),
+                //         ))
+                //   ],
+                // )
               ],
             ),
           ),

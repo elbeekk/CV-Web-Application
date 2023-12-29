@@ -41,7 +41,7 @@ class _Container5State extends ConsumerState<AwardsPage> {
                           AppColors.mainBackgroundColorDark,
                         ]
                       : [
-                    AppColors.mainBackgroundColorLight,
+                    AppColors.flutterPageGradientColorLight1,
                     AppColors.mainBackgroundColorLight,
 
                   ])),

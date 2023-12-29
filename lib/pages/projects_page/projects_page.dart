@@ -21,9 +21,9 @@ class _ProjectsPageState extends ConsumerState<ProjectsPage> {
   Widget build(BuildContext context) {
     final darkState = ref.watch(AppProvider.isDarkProvider);
     return ScreenTypeLayout(
-      mobile: MobileContainer6(),
+      mobile: _mobilePage(darkState),
       desktop: _desktopPage(darkState),
-      tablet: TabletContainer6(),
+      tablet: _desktopPage(darkState),
     );
   }
 
@@ -128,141 +128,7 @@ class _ProjectsPageState extends ConsumerState<ProjectsPage> {
     );
   }
 
-  Widget TabletContainer6() {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: w! * 0.05),
-      child: Column(
-        children: [
-          Text(
-            'Projects',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.bodoniModa(
-                fontSize: 45, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 80,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  constraints:
-                      const BoxConstraints(maxWidth: 350, maxHeight: 250),
-                  color: AppColors.onprimary,
-                  child:
-                      Lottie.asset('assets/telegramBot.json', fit: BoxFit.fill),
-                ),
-                const SizedBox(
-                  width: 25,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Telegram Bot',
-                        style: GoogleFonts.aBeeZee(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "This bot is written using the teledart package of the flutter framework of the dart language and this bot converts any type of video into audio. The bot user interface is in Uzbek"
-                        ", Russian, and English, and there will be no problems using the bot.",
-                        style: GoogleFonts.aBeeZee(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w500,
-                            height: 1.5,
-                            color: Colors.black),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          launch('https://t.me/video_to_audio0_bot');
-                        },
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'view',
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.open_in_new,
-                              size: 15,
-                              color: Colors.blue,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          // Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Row(
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       Container(
-          //         height: 200,
-          //         width: 300,
-          //         color: AppColors.onprimary,
-          //       ),
-          //       const SizedBox(width: 15,),
-          //       Expanded(
-          //         child: Column(
-          //           crossAxisAlignment: CrossAxisAlignment.start,
-          //           mainAxisAlignment: MainAxisAlignment.start,
-          //           children: [
-          //             Text(
-          //               'Project 2',
-          //               style: GoogleFonts.aBeeZee(
-          //                   fontSize: 20,
-          //                   fontWeight: FontWeight.bold,
-          //                   color: Colors.black),
-          //             ),
-          //             const SizedBox(height: 20,),
-          //             const Text("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dapibus rhoncus elit, quis egestas massa convallis quis. Suspendisse eget orci in erat porttitor placerat. Sed eget nibh consequat, scelerisque mauris eget, pretium quam. Curabitur id justo luctus, rhoncus nisl tempor, porta turpis. Vestibulum vestibulum, augue sed vehicula luctus, leo elit tristique tellus, eget ultrices diam nisl vestibulum urna. Suspendisse iaculis tempus dignissim. """),
-          //             const SizedBox(height: 20,),
-          //             InkWell(
-          //               onTap: (){
-          //                 launch('');
-          //               },
-          //               child: const Row(
-          //                 mainAxisSize: MainAxisSize.min,
-          //                 children: [
-          //                   Text('view',style: TextStyle(color: Colors.blue),),
-          //                   SizedBox(width: 5,),
-          //                   Icon(Icons.open_in_new,size: 15,color: Colors.blue,),
-          //                 ],
-          //               ),
-          //             )
-          //           ],
-          //         ),
-          //       )
-          //     ],
-          //   ),
-          // ),
-        ],
-      ),
-    );
-  }
-
-  Widget MobileContainer6() {
+  Widget _mobilePage(bool darkState) {
     return Container(
       constraints: BoxConstraints(maxWidth: w! * 0.75),
       child: Column(
@@ -271,6 +137,7 @@ class _ProjectsPageState extends ConsumerState<ProjectsPage> {
             'Projects',
             textAlign: TextAlign.center,
             style: GoogleFonts.bodoniModa(
+              color: darkState?AppColors.mainTitleColorDark:AppColors.mainTitleColorDark,
                 fontSize: 45, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
@@ -282,62 +149,10 @@ class _ProjectsPageState extends ConsumerState<ProjectsPage> {
               runSpacing: 20,
               alignment: WrapAlignment.center,
               crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                Container(
-                  constraints:
-                      const BoxConstraints(maxWidth: 350, maxHeight: 250),
-                  color: AppColors.onprimary,
-                  child:
-                      Lottie.asset('assets/telegramBot.json', fit: BoxFit.fill),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Telegram Bot',
-                      style: GoogleFonts.aBeeZee(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      "This bot is written using the teledart package of the flutter framework of the dart language and this bot converts any type of video into audio. The bot user interface is in Uzbek"
-                      ", Russian, and English, and there will be no problems using the bot.",
-                      style: GoogleFonts.aBeeZee(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
-                          height: 1.5,
-                          color: Colors.black),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        launch('https://t.me/video_to_audio0_bot');
-                      },
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'view',
-                            style: TextStyle(color: Colors.blue),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                            Icons.open_in_new,
-                            size: 15,
-                            color: Colors.blue,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                )
-              ],
+              children: List.generate(UserData.projects.length, (index){
+                final current = UserData.projects[index];
+                return projectColumn(darkState,current[0],current[1],current[2],current[3],);
+              }),
             ),
           ),
           const SizedBox(
@@ -391,6 +206,75 @@ class _ProjectsPageState extends ConsumerState<ProjectsPage> {
           // ),
         ],
       ),
+    );
+  }
+
+  Widget projectColumn(bool darkState,Widget asset,String title,String subtitle,String url) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      constraints:
+                          const BoxConstraints(maxWidth: 350, maxHeight: 250),
+                      color: AppColors.mainBackgroundColorLight,
+                      child:
+                         asset,
+                    ),
+                    const SizedBox(height: 20,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.aBeeZee(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: darkState?AppColors.mainTitleColorDark:AppColors.mainTitleColorLight),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(
+                          subtitle,
+                          textAlign: TextAlign.center,
+
+                          style: GoogleFonts.aBeeZee(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500,
+                              height: 1.5,
+                              color: darkState?AppColors.mainTitleColorDark:AppColors.mainTitleColorLight),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            launch(url);
+                          },
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'view',
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Icon(
+                                Icons.open_in_new,
+                                size: 15,
+                                color: Colors.blue,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
     );
   }
 }

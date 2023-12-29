@@ -58,7 +58,7 @@ class _HomeState extends ConsumerState<Home> {
               container7Key: container7Key,
             ),
             const FlutterPage(),
-            Container3(
+            BiographyPage(
               key: container3Key,
             ),
             EducationPage(
@@ -89,10 +89,13 @@ class _HomeState extends ConsumerState<Home> {
             navLogo(darkState),
             PopupMenuButton(
               splashRadius: 25,
-              icon: const Icon(Icons.menu),
+              icon: Icon(Icons.menu,color: darkState?AppColors.mainAppColorDark:AppColors.mainAppColorLight,),
               padding: const EdgeInsets.all(0),
-              constraints: BoxConstraints(minWidth: w!),
+              constraints: BoxConstraints(minWidth: w!*0.5),
               clipBehavior: Clip.none,
+              elevation: 10,
+              shadowColor: darkState?AppColors.chatPageMainColor:AppColors.mainAppColorLight,
+              color: darkState?AppColors.mainBackgroundColorDark:AppColors.mainBackgroundColorLight,
               itemBuilder: (context) {
                 return [
                   PopupMenuItem(
@@ -101,26 +104,32 @@ class _HomeState extends ConsumerState<Home> {
                           container1Key.currentContext ?? context,
                           duration: const Duration(seconds: 1));
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           'Home',
+                          style: TextStyle(
+                            color: darkState?AppColors.mainTitleColorDark:AppColors.mainAppColorLight
+                          ),
                         ),
                       ],
                     ),
                   ),
                   PopupMenuItem(
+
                     onTap: () async {
                       await Scrollable.ensureVisible(
                           container3Key.currentContext ?? context,
                           duration: const Duration(seconds: 1));
                     },
-                    child: const Row(
+                    child:  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Biography',
+                          'Biography', style: TextStyle(
+                            color: darkState?AppColors.mainTitleColorDark:AppColors.mainAppColorLight
+                        ),
                         ),
                       ],
                     ),
@@ -131,11 +140,13 @@ class _HomeState extends ConsumerState<Home> {
                           container4Key.currentContext ?? context,
                           duration: const Duration(seconds: 1));
                     },
-                    child: const Row(
+                    child:  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Expertise',
+                          'Expertise', style: TextStyle(
+                            color: darkState?AppColors.mainTitleColorDark:AppColors.mainAppColorLight
+                        ),
                         ),
                       ],
                     ),
@@ -146,11 +157,13 @@ class _HomeState extends ConsumerState<Home> {
                           container5Key.currentContext ?? context,
                           duration: const Duration(seconds: 1));
                     },
-                    child: const Row(
+                    child:  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Awards',
+                          'Awards', style: TextStyle(
+                            color: darkState?AppColors.mainTitleColorDark:AppColors.mainAppColorLight
+                        ),
                         ),
                       ],
                     ),
@@ -161,11 +174,13 @@ class _HomeState extends ConsumerState<Home> {
                           container6Key.currentContext ?? context,
                           duration: const Duration(seconds: 1));
                     },
-                    child: const Row(
+                    child:  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Projects',
+                          'Projects', style: TextStyle(
+                            color: darkState?AppColors.mainTitleColorDark:AppColors.mainAppColorLight
+                        ),
                         ),
                       ],
                     ),
@@ -244,7 +259,7 @@ class _HomeState extends ConsumerState<Home> {
                       duration: const Duration(seconds: 2));
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.onprimary,
+                    backgroundColor: darkState?AppColors.mainAppColorDark:AppColors.mainAppColorLight,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0))),
                 child: Text("LET'S TALK", style: GoogleFonts.akatab()),

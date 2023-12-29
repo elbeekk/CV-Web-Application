@@ -25,7 +25,7 @@ class _EducationPageState extends ConsumerState<EducationPage> {
   Widget build(BuildContext context) {
     final darkState = ref.watch(AppProvider.isDarkProvider);
     return ScreenTypeLayout(
-      mobile: MobileContainer4(),
+      mobile: _mobilePage(darkState),
       desktop: _desktopPage(darkState),
     );
   }
@@ -110,7 +110,7 @@ class _EducationPageState extends ConsumerState<EducationPage> {
                 Icon(
                   Icons.expand_circle_down_outlined,
                   color: darkState
-                      ? AppColors.mainAppColorDark
+                      ? AppColors.chatPageMainColor
                       : AppColors.mainAppColorLight,
                 ),
                 Expanded(
@@ -176,7 +176,7 @@ class _EducationPageState extends ConsumerState<EducationPage> {
   }
 
   Container customStepper(
-      String url, String title, String duration, String subtitle, Color color) {
+      String url, String title, String duration, String subtitle,bool darkState) {
     return Container(
       constraints: BoxConstraints(maxWidth: w!, maxHeight: 200),
       child: Row(
@@ -188,7 +188,7 @@ class _EducationPageState extends ConsumerState<EducationPage> {
             children: [
               Icon(
                 Icons.expand_circle_down_outlined,
-                color: AppColors.onprimary,
+                color: darkState?AppColors.chatPageMainColor: AppColors.mainAppColorLight,
               ),
               Expanded(
                   child: VerticalDivider(
@@ -211,27 +211,15 @@ class _EducationPageState extends ConsumerState<EducationPage> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MouseRegion(
-                    onEnter: (event) {
-                      setState(() {
-                        color = AppColors.onprimary;
-                      });
+                  InkWell(
+                    onTap: () {
+                      launch(url);
                     },
-                    onExit: (event) {
-                      setState(() {
-                        color = AppColors.primary;
-                      });
-                    },
-                    child: InkWell(
-                      onTap: () {
-                        launch(url);
-                      },
-                      child: Text(
-                        title,
-                        style: GoogleFonts.aBeeZee(
-                          color: color,
-                          fontSize: 22,
-                        ),
+                    child: Text(
+                      title,
+                      style: GoogleFonts.aBeeZee(
+                        color: darkState?AppColors.mainTitleColorDark:AppColors.mainTitleColorLight,
+                        fontSize: 22,
                       ),
                     ),
                   ),
@@ -240,7 +228,7 @@ class _EducationPageState extends ConsumerState<EducationPage> {
                   ),
                   Text(duration,
                       style: GoogleFonts.aBeeZee(
-                        color: Colors.grey.shade600,
+                        color: darkState?AppColors.flutterPageSubtitleColorDark:AppColors.flutterPageSubtitleColorLight,
                         fontSize: 15,
                       )),
                   const SizedBox(
@@ -249,7 +237,7 @@ class _EducationPageState extends ConsumerState<EducationPage> {
                   Text(
                     subtitle,
                     style: GoogleFonts.aBeeZee(
-                      color: Colors.grey,
+                      color:darkState?AppColors.flutterPageSubtitleColorDark:AppColors.flutterPageSubtitleColorLight,
                       fontSize: 15,
                     ),
                   ),
@@ -262,9 +250,22 @@ class _EducationPageState extends ConsumerState<EducationPage> {
     );
   }
 
-  Widget MobileContainer4() {
+  Widget _mobilePage(bool darkState) {
     return Container(
-      color: AppColors.backColor,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+        end: Alignment.bottomRight,
+        colors: darkState
+            ? [
+                AppColors.mainBackgroundColorDark,
+                AppColors.flutterPageGradientColorDark1
+              ]
+            : [
+                Colors.grey.shade50,
+                AppColors.flutterPageGradientColorLight1,
+              ],
+        begin: Alignment.topRight,
+      )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -273,26 +274,26 @@ class _EducationPageState extends ConsumerState<EducationPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'Education',
+                'Experience',
                 style: GoogleFonts.bodoniModa(
-                    fontSize: 50, fontWeight: FontWeight.bold),
+                  fontSize: 50,
+                  color: darkState?AppColors.mainTitleColorDark:AppColors.mainTitleColorLight,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 50,
               ),
               Column(
-                children: [
-                  customStepper(
-                      'https://piima.uz/en/page/presidential-schools',
-                      'Presidential School in Jizzakh',
-                      '2021 - 2023',
-                      'The Presidential School is a specialized public educational institution whose activities are aimed at identifying and educating gifted children to train highly qualified specialists.',
-                      stepperColor1),
-                  customStepper(
-                      'https://tsue.uz/en',
-                      'Tashkent State University of Economics',
-                      '2023 - Present',
-                      'Tashkent State University of Economics is one of the largest higher education institutions in the field of economics in Uzbekistan and Central Asia.',
-                      stepperColor2)
-                ],
-              )
+                children: List.generate(UserData.workHistory.length, (index) {
+                  List current = UserData.workHistory[index];
+                  return  customStepper(
+                      current[4],
+                      current[0],
+                      '${current[2]} - ${current[3]}',
+                      current[1],darkState);
+                }),
+              ),
             ],
           ),
           const SizedBox(
@@ -302,25 +303,24 @@ class _EducationPageState extends ConsumerState<EducationPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'Experience',
+                'Education',
                 style: GoogleFonts.bodoniModa(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                ),
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: darkState
+                        ? AppColors.mainTitleColorDark
+                        : AppColors.mainTitleColorLight),
               ),
-              const SizedBox(
-                height: 50,
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  customStepper(
-                      'https://githubit.com/',
-                      'Mobile App Developer in Githubit',
-                      "Jun 2023 - Present",
-                      'A mobile app developer uses programming languages and development skills to create, test, and develop applications on mobile devices.',
-                      stepperColor3)
-                ],
+              SizedBox(height: 50,),
+              Column(
+                children: List.generate(UserData.educationHistory.length, (index) {
+                  List current = UserData.educationHistory[index];
+                  return  customStepper(
+                      current[4],
+                      current[0],
+                      '${current[2]} - ${current[3]}',
+                      current[1],darkState);
+                }),
               ),
             ],
           ),

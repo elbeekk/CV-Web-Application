@@ -20,80 +20,90 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     final darkState = ref.watch(AppProvider.isDarkProvider);
     return ScreenTypeLayout(
-
-      mobile: _mobileContainer(),
-      desktop: _desktopContainer(darkState),
-      tablet: _tabletContainer(),
+      mobile: _mobilePage(darkState),
+      desktop: _desktopPage(darkState),
+      tablet: _tabletPage(darkState),
     );
   }
 
   /// MOBILE
-  Widget _mobileContainer() {
+  Widget _mobilePage(bool darkState) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       child: Column(
         children: [
-          Container(
-            child: Column(
-              children: [
-                SelectableText.rich(
-                  TextSpan(text: "Hi, I’m ",children: [
-                    TextSpan(
-                      text: "Elbek Mirzamakhmudov",
-                      style:
-                          GoogleFonts.abhayaLibre(color: AppColors.onprimary),
-                    ),
-                    const TextSpan(text: '\na Mobile App (Flutter) developer.')
-                  ]),
-                  style: GoogleFonts.abhayaLibre(
-                      fontSize: h! * 0.06, fontWeight: FontWeight.normal),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'I’m a Mobile App (Flutter) developer based in Tashkent and enjoy creating apps & websites. I love travelling, game & music.',
-                  style: GoogleFonts.aBeeZee(
-                    color: Colors.grey.shade600,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      height: 40,
-                      width: 120,
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          await Scrollable.ensureVisible(
-                              widget.container7Key.currentContext ?? context,
-                              duration: const Duration(seconds: 2));
-                        },
-                        style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(115, 40),
-                            backgroundColor: AppColors.onprimary,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(0))),
-                        child: Text("CONTACT ME", style: GoogleFonts.akatab()),
+          Column(
+            children: [
+              SelectableText.rich(
+                TextSpan(
+                    text: "Hi, I’m ",
+                    style: GoogleFonts.abhayaLibre(
+                        color: darkState
+                            ? AppColors.mainTitleColorDark
+                            : AppColors.mainTitleColorLight),
+                    children: [
+                      TextSpan(
+                        text: "Elbek Mirzamakhmudov",
+                        style: GoogleFonts.abhayaLibre(
+                            color: darkState
+                                ? AppColors.chatPageMainColor
+                                : AppColors.mainAppColorLight),
                       ),
-                    ),
-                  ],
+                      const TextSpan(
+                          text: '\na Mobile App (Flutter) developer.')
+                    ]),
+                style: GoogleFonts.abhayaLibre(
+                    fontSize: h! * 0.06, fontWeight: FontWeight.normal),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                'I’m a Mobile App (Flutter) developer based in Tashkent and enjoy creating apps & websites. I love travelling, game & music.',
+                style: GoogleFonts.aBeeZee(
+                  color: darkState
+                      ? AppColors.flutterPageSubtitleColorDark
+                      : AppColors.flutterPageSubtitleColorLight,
+                  fontSize: 16,
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    height: 40,
+                    width: 120,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await Scrollable.ensureVisible(
+                            widget.container7Key.currentContext ?? context,
+                            duration: const Duration(seconds: 2));
+                      },
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(115, 40),
+                          backgroundColor: darkState
+                              ? AppColors.mainAppColorDark
+                              : AppColors.mainAppColorLight,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0))),
+                      child: Text("CONTACT ME", style: GoogleFonts.akatab()),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
+
           const SizedBox(
-            height: 20,
+            height: 40,
           ),
           ClipRRect(
-            borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(1000)),
-            child: Container(
-              height: h! * 0.6,
-              child: Image.asset('assets/elbek.jpg'),
+            borderRadius: BorderRadius.circular(5),
+            child: SizedBox(
+              width: w!*0.7,
+              child: Image.asset('assets/elbek.jpg',fit: BoxFit.cover,),
             ),
           ),
         ],
@@ -102,85 +112,97 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   /// DESKTOP
-  Widget _desktopContainer(
-      bool darkState
-      ) {
+  Widget _desktopPage(bool darkState) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: w! / 11, vertical: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            constraints: const BoxConstraints(maxWidth: 650),
-            width: w! * .4,
-            child: Column(
-              children: [
-                SelectableText.rich(
-                  TextSpan(text: "Hi, I’m ",style: GoogleFonts.abhayaLibre(color: darkState?AppColors.mainTitleColorDark:AppColors.mainTitleColorLight), children: [
+      margin: EdgeInsets.symmetric(horizontal: w! * 0.05, vertical: 20),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              constraints: const BoxConstraints(maxWidth: 650),
+              width: w! * .4,
+              child: Column(
+                children: [
+                  SelectableText.rich(
                     TextSpan(
-                      text: "Elbek Mirzamakhmudov",
-                      style:
-                          GoogleFonts.abhayaLibre(color:darkState?AppColors.chatPageMainColor:AppColors.mainAppColorLight),
-                    ),
-                    const TextSpan(text: '\na Flutter developer.')
-                  ]),
-                  style: GoogleFonts.abhayaLibre(
-                      fontSize: w! / 30, fontWeight: FontWeight.normal),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'I live in Tashkent and enjoy creating apps & websites. I love travelling, game & music.',
-                  style: GoogleFonts.aBeeZee(
-                    color: darkState?AppColors.flutterPageSubtitleColorDark:AppColors.flutterPageSubtitleColorLight,
-                    fontSize: 16,
+                        text: "Hi, I’m ",
+                        style: GoogleFonts.abhayaLibre(
+                            color: darkState
+                                ? AppColors.mainTitleColorDark
+                                : AppColors.mainTitleColorLight),
+                        children: [
+                          TextSpan(
+                            text: "Elbek Mirzamakhmudov",
+                            style: GoogleFonts.abhayaLibre(
+                                color: darkState
+                                    ? AppColors.chatPageMainColor
+                                    : AppColors.mainAppColorLight),
+                          ),
+                          const TextSpan(text: '\na Flutter developer.')
+                        ]),
+                    style: GoogleFonts.abhayaLibre(
+                        fontSize: w! / 30, fontWeight: FontWeight.normal),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () async {
-                        await Scrollable.ensureVisible(
-                            widget.container7Key.currentContext ?? context,
-                            duration: const Duration(seconds: 2));
-                      },
-                      style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(115, 40),
-                          backgroundColor: darkState?AppColors.mainAppColorDark:AppColors.mainAppColorLight,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(0))),
-                      child: Text(
-                        "CONTACT ME",
-                        style: GoogleFonts.akatab(),
-                      ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'I live in Tashkent and enjoy creating apps & websites. I love travelling, game & music.',
+                    style: GoogleFonts.aBeeZee(
+                      color: darkState
+                          ? AppColors.flutterPageSubtitleColorDark
+                          : AppColors.flutterPageSubtitleColorLight,
+                      fontSize: 16,
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          await Scrollable.ensureVisible(
+                              widget.container7Key.currentContext ?? context,
+                              duration: const Duration(seconds: 2));
+                        },
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: const Size(115, 40),
+                            backgroundColor: darkState
+                                ? AppColors.mainAppColorDark
+                                : AppColors.mainAppColorLight,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0))),
+                        child: Text(
+                          "CONTACT ME",
+                          style: GoogleFonts.akatab(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(
-            width: 80,
-          ),
-          ClipRRect(
-            borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(1000)),
-            child: Container(
-              height: h! * 0.5,
-              child: Image.asset('assets/elbek.jpg'),
+            const SizedBox(
+              width: 80,
             ),
-          ),
-        ],
+            ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: SizedBox(
+                height: h! * 0.5,
+                child: Image.asset('assets/elbek.jpg'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   /// TABLET
-  Widget _tabletContainer() {
+  Widget _tabletPage(bool darkState) {
     return Container(
       margin: const EdgeInsets.symmetric(
         horizontal: 20,
@@ -188,19 +210,28 @@ class _HomePageState extends ConsumerState<HomePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
             width: w! * 0.5,
             child: Column(
               children: [
                 SelectableText.rich(
-                  TextSpan(text: "Hi, I’m ", children: [
-                    TextSpan(
-                      text: "Elbek Mirzamakhmudov",
-                      style:
-                          GoogleFonts.abhayaLibre(color: AppColors.onprimary),
-                    ),
-                    const TextSpan(text: '\na Mobile App (Flutter) developer.')
-                  ]),
+                  TextSpan(
+                      text: "Hi, I’m ",
+                      style: GoogleFonts.abhayaLibre(
+                          color: darkState
+                              ? AppColors.mainTitleColorDark
+                              : AppColors.mainTitleColorLight),
+                      children: [
+                        TextSpan(
+                          text: "Elbek Mirzamakhmudov",
+                          style: GoogleFonts.abhayaLibre(
+                              color: darkState
+                                  ? AppColors.chatPageMainColor
+                                  : AppColors.mainAppColorLight),
+                        ),
+                        const TextSpan(
+                            text: '\na Mobile App (Flutter) developer.')
+                      ]),
                   style: GoogleFonts.abhayaLibre(
                       fontSize: w! * 0.06, fontWeight: FontWeight.normal),
                 ),
@@ -210,7 +241,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                 Text(
                   'I’m a Mobile App (Flutter) developer based in Tashkent and enjoy creating apps & websites. I love travelling, game & music.',
                   style: GoogleFonts.aBeeZee(
-                    color: Colors.grey.shade600,
+                    color: darkState
+                        ? AppColors.flutterPageSubtitleColorDark
+                        : AppColors.flutterPageSubtitleColorLight,
                     fontSize: 16,
                   ),
                 ),
@@ -227,7 +260,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                       },
                       style: ElevatedButton.styleFrom(
                           fixedSize: const Size(115, 40),
-                          backgroundColor: AppColors.onprimary,
+                          backgroundColor: darkState
+                              ? AppColors.mainAppColorDark
+                              : AppColors.mainAppColorLight,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0))),
                       child: Text(
@@ -244,12 +279,12 @@ class _HomePageState extends ConsumerState<HomePage> {
             width: 80,
           ),
           ClipRRect(
-            borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(1000)),
             child: Container(
               height: h! * 0.4,
               constraints: BoxConstraints(minHeight: 400, maxWidth: w! * 0.3),
-              child: Image.asset('assets/elbek.jpg'),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: Image.asset('assets/elbek.jpg')),
             ),
           ),
         ],
