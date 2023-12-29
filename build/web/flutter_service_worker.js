@@ -3,13 +3,14 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "d2205dce4e9e5aa3aa54ceb2bb9e5c60",
-"assets/AssetManifest.bin.json": "a9267952786c1b563d030e97fada7f7f",
-"assets/AssetManifest.json": "891138cede5864835511709c809c6859",
+const RESOURCES = {"assets/AssetManifest.bin": "c342ff6f97a7e4a1dcb1a5bcd4cd1012",
+"assets/AssetManifest.bin.json": "250acc301e584673de0b8ab0177e1a59",
+"assets/AssetManifest.json": "eb67a14c6502a5714c8f6198dd29a00b",
 "assets/assets/balatech.jpeg": "97d6da0e002c27ff7bd0bf5165cec101",
 "assets/assets/elbek.jpg": "66f9c9e21c3a7cb08a7bbe7842116b95",
 "assets/assets/elbek1.jpg": "3b40c06c7d40696e65093379098b9d03",
 "assets/assets/english.png": "5c1068189b99695be8cd41ff6f144f72",
+"assets/assets/game.json": "848de96dc80e6a12cc8f8301af7b9560",
 "assets/assets/logo.jpeg": "c84c199b8866af379061ac4aa16284b6",
 "assets/assets/pdp.jpeg": "2aff830e36bd00ca7725b0d91c1ba6e2",
 "assets/assets/pdp1.jpg": "870af84efdd5741d2d5ffa20bcb8c344",
@@ -53,9 +54,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "d2205dce4e9e5aa3aa54ceb2bb9e5c60
 "icons/Icon-512.png": "405988257e4bad1a6d450e7caaa5d1ea",
 "icons/Icon-maskable-192.png": "4889ff8c5744e7974e5936878eeccc16",
 "icons/Icon-maskable-512.png": "405988257e4bad1a6d450e7caaa5d1ea",
-"index.html": "a8576c9c30af5cf3d87f3b9eec24d65f",
-"/": "a8576c9c30af5cf3d87f3b9eec24d65f",
-"main.dart.js": "2177f9dfc001806dc2da42c5fb748b43",
+"index.html": "1ab9a24b2fdbf37985ee402eb09ab82e",
+"/": "1ab9a24b2fdbf37985ee402eb09ab82e",
+"main.dart.js": "805a24ed70f7a8576878e53da89e4ad3",
 "manifest.json": "295714139c1a5eeb871de7b02f41ad50",
 "version.json": "0f17c340b77144c52eeb10aeca30f6fd"};
 // The application shell files that are downloaded before a service worker can
