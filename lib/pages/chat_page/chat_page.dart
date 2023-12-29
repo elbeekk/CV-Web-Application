@@ -1,5 +1,6 @@
 import 'package:elbek/riverpod/all_providers.dart';
 import 'package:elbek/utils/colors.dart';
+import 'package:elbek/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -232,16 +233,8 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (nameCon.text.isNotEmpty &&
-                              messageCon.text.isNotEmpty &&
-                              teleDart != null) {
-                            teleDart
-                                ?.sendMessage(
-                                    5925263907,
-                                    "---New Message From CV website---\n\n"
-                                    "Name: ${nameCon.text.toString().trim()}\n"
-                                    "Link: ${linkCon.text.toString().trim()}\n"
-                                    "Message: ${messageCon.text.toString().trim()}\n")
-                                .whenComplete(() {
+                              messageCon.text.isNotEmpty) {
+                            AppFunction.sendMessage(name: nameCon.text,email: linkCon.text, text: messageCon.text).whenComplete(() {
                               fToast.showToast(
                                 child: Container(
                                     height: 50,
@@ -251,9 +244,9 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                                         color: Colors.green.shade300),
                                     child: const Center(
                                         child: Text(
-                                      'Message sent!',
-                                      style: TextStyle(color: Colors.white),
-                                    ))),
+                                          'Message sent!',
+                                          style: TextStyle(color: Colors.white),
+                                        ))),
                                 gravity: ToastGravity.BOTTOM_RIGHT,
                               );
                               setState(() {
@@ -262,6 +255,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                                 messageCon.clear();
                               });
                             });
+
                           }
                           if (nameCon.text.isEmpty) {
                             fToast.showToast(

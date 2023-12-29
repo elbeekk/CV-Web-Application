@@ -1,5 +1,11 @@
+import 'dart:convert';
+import 'dart:js_interop';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:elbek/riverpod/all_providers.dart';
+import 'package:elbek/utils/functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -16,6 +22,22 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  sendMessage() async {
+    try{
+      final info = await DeviceInfoPlugin().webBrowserInfo;
+      AppFunction.sendMessage(
+          name: 'NEW VIEWER',
+          email: info.data.toString(),
+          text: ''); // TODO: implement initState
+    }catch(e){
+    }
+  }
+
+  @override
+  void initState() {
+    sendMessage();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final darkState = ref.watch(AppProvider.isDarkProvider);

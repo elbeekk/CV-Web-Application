@@ -7,6 +7,9 @@ list(APPEND FLUTTER_PLUGIN_LIST
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
+  telegram_bot_api_flutter
+  telegram_client_flutter
+  telegram_client_linux
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

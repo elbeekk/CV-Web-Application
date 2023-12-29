@@ -1,8 +1,10 @@
+import 'package:elbek/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:elbek/pages/main_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
+  AppFunction.init();
   runApp(const ProviderScope(child: MyApp()));
 }
 

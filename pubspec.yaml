@@ -26,6 +26,10 @@ dependencies:
   flutter_riverpod: ^2.4.9
   riverpod: ^2.4.9
   dartz: ^0.10.1
+  telegram_client: ^0.5.98
+  telegram_client_flutter: ^0.0.15
+  telegram_bot_api_flutter: ^0.0.0
+  device_info_plus: ^9.1.1
 
 
 dev_dependencies:
