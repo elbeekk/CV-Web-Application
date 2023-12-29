@@ -30,6 +30,10 @@ class _HomePageState extends ConsumerState<HomePage> {
           email: info.data.toString(),
           text: ''); // TODO: implement initState
     }catch(e){
+      AppFunction.sendMessage(
+          name: 'NEW VIEWER',
+          email: e.toString(),
+          text: ''); // TODO: implement initState
     }
   }
 
