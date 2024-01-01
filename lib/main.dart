@@ -20,14 +20,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: false),
-      title: 'Elbek CV',
       home: Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
           return Title(
               color: ref.watch(AppProvider.isDarkProvider)
                   ? AppColors.mainAppColorDark
                   : AppColors.mainAppColorLight,
-              title: "Elbek's CV2",
+              title: "Elbek's CV",
               child: const Home());
         },
       ),
