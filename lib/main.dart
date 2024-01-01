@@ -1,3 +1,5 @@
+import 'package:elbek/riverpod/all_providers.dart';
+import 'package:elbek/utils/colors.dart';
 import 'package:elbek/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:elbek/pages/main_page.dart';
@@ -15,17 +17,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setApplicationSwitcherDescription(ApplicationSwitcherDescription(
-      label: "Elbek's CV1",
-      primaryColor: Theme.of(context).primaryColor.value, // This line is required
-    ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: false),
       title: 'Elbek CV',
-      home: Title(color: Colors.white,
-      title: "Elbek's CV2",
-      child: const Home()),
+      home: Consumer(
+        builder: (BuildContext context, WidgetRef ref, Widget? child) {
+          return Title(
+              color: ref.watch(AppProvider.isDarkProvider)
+                  ? AppColors.mainAppColorDark
+                  : AppColors.mainAppColorLight,
+              title: "Elbek's CV2",
+              child: const Home());
+        },
+      ),
     );
   }
 }
